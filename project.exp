@@ -1,0 +1,35 @@
+# System Walkthrough
+
+I have successfully developed the Machine Learning based Fraud Detection System to predict whether financial or cryptocurrency transactions are fraudulent or legitimate! 🎉
+
+Here’s a breakdown of what was built and tested:
+
+## 1. Dataset Generation & Processing
+- Since no dataset was provided, I built a `synthetic_generator` script to simulate **50,000 highly realistic financial transactions** with an imbalanced fraud ratio of ~3%.
+- **Preprocessing Engine**: I implemented robust pipelines including `StandardScaler` for amount normalization, `LabelEncoder` for categorical traits, and **SMOTE** oversampling to give equal weight to the minority `fraud` class.
+
+## 2. Model Training & Evaluation
+We trained three powerful models to compare performance:
+- **Logistic Regression**: A strong linear baseline model.
+- **Random Forest**: Good handling of tree-based feature splits.
+- **XGBoost Classifier**: The ultimate gradient-boosting decision tree engine.
+
+**Results:** XGBoost performed the best against the validation metrics `(F1 Score: ~0.7684, Recall: ~0.9400)`, intelligently flagging most fraudulent transactions. All preprocessing objects (`scaler.pkl`, `label_encoder.pkl`) and ML models are safely stored in the `/models` directory.
+
+## 3. Web Dashboard (Streamlit)
+I built an interactive and visually appealing web UI using Streamlit!
+The Dashboard is now **live locally** and includes:
+- **📊 Overview & Insights**: Visualizations of transaction types, total fraud analysis, and data samples using custom seaborn charting.
+- **⚙️ Model Performance**: Compares Accuracy, Precision, Recall, F1 Score, and ROC-AUC dynamically based on the saved JSON metrics.
+- **🔍 Predict Risk Form**: An interactive form where you can input custom parameters (amount, old balance, trans type, etc.) and it runs the transaction live against our XGBoost Model, predicting `FRAUD` or `LEGITIMATE` and returning a Risk Score %.
+
+---
+
+### How to Access the App
+The Streamlit application is currently running in the background!
+👉 **Click here to open it:** [http://localhost:8501](http://localhost:8501)
+
+If the server stops and you wish to run it again, execute the following from the project root:
+```bash
+python -m streamlit run app.py
+```
